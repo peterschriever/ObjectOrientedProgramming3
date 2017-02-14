@@ -15,6 +15,9 @@ public class MultiThreading extends Application {
     @Override
     public void start(Stage stage) throws Exception {
         // 30.1
-        TaskThreadDemo.main(null, stage);
+//        TaskThreadDemo.main(null, stage);
+
+        // 30.4
+        new ThousandThreadsIncrement(1000, true);
     }
 }
