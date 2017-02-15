@@ -31,6 +31,9 @@ public class MultiThreading extends Application {
 //        });
 
         // 30.8
-        ThreadCooperation.main(null);
+//        ThreadCooperation.main(null);
+
+        // 30.15
+        ParallelMax.main(null);
     }
 }
