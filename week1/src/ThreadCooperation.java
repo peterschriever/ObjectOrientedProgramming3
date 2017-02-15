@@ -1,5 +1,5 @@
-import java.util.concurrent.*;
-import java.util.concurrent.locks.*;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 public class ThreadCooperation {
     private static Account account = new Account();
@@ -40,11 +40,6 @@ public class ThreadCooperation {
 
     // An inner class for account
     private static class Account {
-        // Create a new lock
-        private static Lock lock = new ReentrantLock();
-
-        // Create a condition
-        private static Condition newDeposit = lock.newCondition();
 
         private int balance = 0;
 
@@ -53,11 +48,12 @@ public class ThreadCooperation {
         }
 
         public void withdraw(int amount) {
-            lock.lock(); // Acquire the lock
             try {
                 while (balance < amount) {
                     System.out.println("\t\t\tWait for a deposit");
-                    newDeposit.await();
+                    synchronized (this) {
+                        this.wait();
+                    }
                 }
                 balance -= amount;
                 System.out.println("\t\t\tWithdraw " + amount +
@@ -66,23 +62,16 @@ public class ThreadCooperation {
             catch (InterruptedException ex) {
                 ex.printStackTrace();
             }
-            finally {
-                lock.unlock(); // Release the lock
-            }
         }
 
         public void deposit(int amount) {
-            lock.lock(); // Acquire the lock
-            try {
-                balance += amount;
-                System.out.println("Deposit " + amount +
-                        "\t\t\t\t\t" + getBalance());
+            balance += amount;
+            System.out.println("Deposit " + amount +
+                    "\t\t\t\t\t" + getBalance());
 
-                // Signal thread waiting on the condition
-                newDeposit.signalAll();
-            }
-            finally {
-                lock.unlock(); // Release the lock
+            // Signal thread waiting on the condition
+            synchronized (this) {
+                this.notify();
             }
         }
     }
