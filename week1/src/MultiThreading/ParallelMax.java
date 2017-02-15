@@ -1,3 +1,5 @@
+package MultiThreading;
+
 import java.util.concurrent.*;
 
 public class ParallelMax {

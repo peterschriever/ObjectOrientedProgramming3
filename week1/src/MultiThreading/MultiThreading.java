@@ -1,3 +1,5 @@
+package MultiThreading;
+
 import javafx.application.Application;
 import javafx.stage.Stage;
 
@@ -18,11 +20,11 @@ public class MultiThreading extends Application {
 //        TaskThreadDemo.main(null, stage);
 
         // 30.4
-//        new ThousandThreadsIncrement(1000, true);
+//        new MultiThreading.ThousandThreadsIncrement(1000, true);
 
         // 30.6
 //        stage.setTitle("Hello bouncy world!");
-//        BallPane ballPane = new BallPane();
+//        MultiThreading.BallPane ballPane = new MultiThreading.BallPane();
 //        Scene scene = new Scene(ballPane, 400, 300);
 //        stage.setScene(scene);
 //        stage.show();
@@ -31,7 +33,7 @@ public class MultiThreading extends Application {
 //        });
 
         // 30.8
-//        ThreadCooperation.main(null);
+//        MultiThreading.ThreadCooperation.main(null);
 
         // 30.15
         ParallelSum.main(null);
