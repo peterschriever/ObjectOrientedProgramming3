@@ -13,7 +13,6 @@ public class MultiThreading extends Application {
         Application.launch(args);
     }
 
-
     @Override
     public void start(Stage stage) throws Exception {
         // 30.1
