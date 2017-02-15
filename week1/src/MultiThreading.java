@@ -34,6 +34,6 @@ public class MultiThreading extends Application {
 //        ThreadCooperation.main(null);
 
         // 30.15
-        ParallelMax.main(null);
+        ParallelSum.main(null);
     }
 }
